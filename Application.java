@@ -1,26 +1,26 @@
 public class Application {
 
     public static void main(String[] args) {
-        int myNumber = 88;
-        short myShort = 847;
-        long myLong = 9797;
 
-        double myDouble = 7.3243;
-        float myFloat = 324.3f;
+        int myInt = 7;
 
-        char myChar = 'y';
-        boolean myBoolean = false;
+        String text = "Hello";
 
-        byte myByte = 127;
+        String blank = " ";
 
-        System.out.println(myNumber);
-        System.out.println(myShort);
-        System.out.println(myLong);
-        System.out.println(myDouble);
-        System.out.println(myFloat);
-        System.out.println(myChar);
-        System.out.println(myBoolean);
-        System.out.println(myByte);
+        String name = "Bob";
+
+        String greeting = text + blank + name;
+
+        System.out.println(greeting);
+
+        System.out.println("Hello" + " " + "Bob");
+
+        System.out.println("My integer is: " + myInt);
+
+        double myDouble = 7.8;
+
+        System.out.println("My number is: " + myDouble + ".");
     }
 
 }
