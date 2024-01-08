@@ -2,25 +2,14 @@ public class Application {
 
     public static void main(String[] args) {
 
-        int myInt = 7;
+        int value = 0;
 
-        String text = "Hello";
+        while (value < 10) {
+            System.out.println("Hello " + value);
 
-        String blank = " ";
+            value = value + 1;
+        }
 
-        String name = "Bob";
-
-        String greeting = text + blank + name;
-
-        System.out.println(greeting);
-
-        System.out.println("Hello" + " " + "Bob");
-
-        System.out.println("My integer is: " + myInt);
-
-        double myDouble = 7.8;
-
-        System.out.println("My number is: " + myDouble + ".");
     }
 
 }
