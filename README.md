@@ -1,1 +1,1 @@
-# Java-For-Beginner-s
+# Java-For-Beginners
