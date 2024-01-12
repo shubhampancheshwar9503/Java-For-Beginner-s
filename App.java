@@ -1,19 +1,28 @@
 import java.util.Scanner;
 
 public class App {
+
     public static void main(String[] args) {
 
-        // Create scanner object
-        Scanner input = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        // Output the prompt
-        System.out.println("Enter a floating point value: ");
+        /*
+         * System.out.println("Enter a number: ");
+         * int value = scanner.nextInt();
+         * 
+         * while(value != 5) {
+         * System.out.println("Enter a number: ");
+         * value = scanner.nextInt();
+         * }
+         */
 
-        // Wait for the user to enter something.
-        double value = input.nextDouble();
+        int value = 0;
+        do {
+            System.out.println("Enter a number: ");
+            value = scanner.nextInt();
+        } while (value != 5);
 
-        // Tell them what they entered.
-        System.out.println("You entered: " + value);
+        System.out.println("Got 5!");
     }
 
 }
