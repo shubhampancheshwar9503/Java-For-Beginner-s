@@ -1,45 +1,36 @@
-class Person {
- 
-    // Instance variables (data or "state")
-    String name;
-    int age;
- 
-    // Classes can contain
- 
-    // 1. Data
-    // 2. Subroutines (methods)
+class Machine {
+    private String name;
+    private int code;
      
-    void speak() {
-        for(int i=0; i<3; i++) {
-            System.out.println("My name is: " + name + " and I am " + age + " years old ");
-        }
+    public Machine() {
+        this("Arnie", 0);
+         
+        System.out.println("Constructor running!");
     }
      
-    void sayHello() {
-        System.out.println("Hello there!");
+    public Machine(String name) {
+        this(name, 0);
+         
+        System.out.println("Second constructor running");
+        // No longer need following line, since we're using the other constructor above.
+        //this.name = name;
+    }
+     
+    public Machine(String name, int code) {
+         
+        System.out.println("Third constructor running");
+        this.name = name;
+        this.code = code;
     }
 }
  
 public class App {
- 
     public static void main(String[] args) {
+        Machine machine1 = new Machine();
  
-        // Create a Person object using the Person class
-        Person person1 = new Person();
-        person1.name = "Joe Bloggs";
-        person1.age = 37;
-        person1.speak();
-        person1.sayHello();
- 
-        // Create a second Person object
-        Person person2 = new Person();
-        person2.name = "Sarah Smith";
-        person2.age = 20;
-        person2.speak();
-        person1.sayHello();
- 
-        System.out.println(person1.name);
- 
+        Machine machine2 = new Machine("Bertie");
+         
+        Machine machine3 = new Machine("Chalky", 7);
     }
  
 }
