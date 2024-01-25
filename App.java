@@ -1,54 +1,45 @@
-class Thing {
-    public final static int LUCKY_NUMBER = 7;
-
-    public String name;
-    public static String description;
-
-    public static int count = 0;
-
-    public int id;
-
-    public Thing() {
-
-        id = count;
-
-        count++;
+class Person {
+ 
+    // Instance variables (data or "state")
+    String name;
+    int age;
+ 
+    // Classes can contain
+ 
+    // 1. Data
+    // 2. Subroutines (methods)
+     
+    void speak() {
+        for(int i=0; i<3; i++) {
+            System.out.println("My name is: " + name + " and I am " + age + " years old ");
+        }
     }
-
-    public void showName() {
-        System.out.println("Object id: " + id + ", " + description + ": " + name);
-    }
-
-    public static void showInfo() {
-        System.out.println(description);
-        // Won't work: System.out.println(name);
+     
+    void sayHello() {
+        System.out.println("Hello there!");
     }
 }
-
+ 
 public class App {
-
+ 
     public static void main(String[] args) {
-
-        Thing.description = "I am a thing";
-
-        Thing.showInfo();
-
-        System.out.println("Before creating objects, count is: " + Thing.count);
-
-        Thing thing1 = new Thing();
-        Thing thing2 = new Thing();
-
-        System.out.println("After creating objects, count is: " + Thing.count);
-
-        thing1.name = "Bob";
-        thing2.name = "Sue";
-
-        thing1.showName();
-        thing2.showName();
-
-        System.out.println(Math.PI);
-
-        System.out.println(Thing.LUCKY_NUMBER);
+ 
+        // Create a Person object using the Person class
+        Person person1 = new Person();
+        person1.name = "Joe Bloggs";
+        person1.age = 37;
+        person1.speak();
+        person1.sayHello();
+ 
+        // Create a second Person object
+        Person person2 = new Person();
+        person2.name = "Sarah Smith";
+        person2.age = 20;
+        person2.speak();
+        person1.sayHello();
+ 
+        System.out.println(person1.name);
+ 
     }
-
+ 
 }
