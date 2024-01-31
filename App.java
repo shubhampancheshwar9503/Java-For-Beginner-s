@@ -1,36 +1,54 @@
-class Machine {
-    private String name;
-    private int code;
-     
-    public Machine() {
-        this("Arnie", 0);
-         
-        System.out.println("Constructor running!");
+class Thing {
+    public final static int LUCKY_NUMBER = 7;
+
+    public String name;
+    public static String description;
+
+    public static int count = 0;
+
+    public int id;
+
+    public Thing() {
+
+        id = count;
+
+        count++;
     }
-     
-    public Machine(String name) {
-        this(name, 0);
-         
-        System.out.println("Second constructor running");
-        // No longer need following line, since we're using the other constructor above.
-        //this.name = name;
+
+    public void showName() {
+        System.out.println("Object id: " + id + ", " + description + ": " + name);
     }
-     
-    public Machine(String name, int code) {
-         
-        System.out.println("Third constructor running");
-        this.name = name;
-        this.code = code;
+
+    public static void showInfo() {
+        System.out.println(description);
+        // Won't work: System.out.println(name);
     }
 }
- 
+
 public class App {
+
     public static void main(String[] args) {
-        Machine machine1 = new Machine();
- 
-        Machine machine2 = new Machine("Bertie");
-         
-        Machine machine3 = new Machine("Chalky", 7);
+
+        Thing.description = "I am a thing";
+
+        Thing.showInfo();
+
+        System.out.println("Before creating objects, count is: " + Thing.count);
+
+        Thing thing1 = new Thing();
+        Thing thing2 = new Thing();
+
+        System.out.println("After creating objects, count is: " + Thing.count);
+
+        thing1.name = "Bob";
+        thing2.name = "Sue";
+
+        thing1.showName();
+        thing2.showName();
+
+        System.out.println(Math.PI);
+
+        System.out.println(Thing.LUCKY_NUMBER);
     }
- 
+
 }
