@@ -1,29 +1,54 @@
-import java.util.HashMap;
-import java.util.Map;
+class Thing {
+    public final static int LUCKY_NUMBER = 7;
+
+    public String name;
+    public static String description;
+
+    public static int count = 0;
+
+    public int id;
+
+    public Thing() {
+
+        id = count;
+
+        count++;
+    }
+
+    public void showName() {
+        System.out.println("Object id: " + id + ", " + description + ": " + name);
+    }
+
+    public static void showInfo() {
+        System.out.println(description);
+        // Won't work: System.out.println(name);
+    }
+}
 
 public class App {
 
     public static void main(String[] args) {
 
-        HashMap<Integer, String> map = new HashMap<Integer, String>();
+        Thing.description = "I am a thing";
 
-        map.put(5, "Five");
-        map.put(8, "Eight");
-        map.put(6, "Six");
-        map.put(4, "Four");
-        map.put(2, "Two");
+        Thing.showInfo();
 
-        String text = map.get(6);
+        System.out.println("Before creating objects, count is: " + Thing.count);
 
-        System.out.println(text);
+        Thing thing1 = new Thing();
+        Thing thing2 = new Thing();
 
-        for (Map.Entry<Integer, String> entry : map.entrySet()) {
-            int key = entry.getKey();
-            String value = entry.getValue();
+        System.out.println("After creating objects, count is: " + Thing.count);
 
-            System.out.println(key + ": " + value);
-        }
+        thing1.name = "Bob";
+        thing2.name = "Sue";
 
+        thing1.showName();
+        thing2.showName();
+
+        System.out.println(Math.PI);
+
+        System.out.println(Thing.LUCKY_NUMBER);
     }
 
 }
