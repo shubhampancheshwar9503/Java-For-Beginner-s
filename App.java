@@ -1,66 +1,45 @@
+class Person {
+    String name;
+    int age;
+
+    void speak() {
+        System.out.println("My name is: " + name);
+    }
+
+    int calculateYearsToRetirement() {
+        int yearsLeft = 65 - age;
+
+        return yearsLeft;
+    }
+
+    int getAge() {
+        return age;
+    }
+
+    String getName() {
+        return name;
+    }
+}
+
 public class App {
 
     public static void main(String[] args) {
+        Person person1 = new Person();
 
-        // Inefficient
-        String info = "";
+        person1.name = "Joe";
+        person1.age = 25;
 
-        info += "My name is Bob.";
-        info += " ";
-        info += "I am a builder.";
+        // person1.speak();
 
-        System.out.println(info);
+        int years = person1.calculateYearsToRetirement();
 
-        // More efficient.
-        StringBuilder sb = new StringBuilder("");
+        System.out.println("Years till retirements " + years);
 
-        sb.append("My name is Sue.");
-        sb.append(" ");
-        sb.append("I am a lion tamer.");
+        int age = person1.getAge();
+        String name = person1.getName();
 
-        System.out.println(sb.toString());
-
-        // The same as above, but nicer ....
-
-        StringBuilder s = new StringBuilder();
-
-        s.append("My name is Roger.")
-                .append(" ")
-                .append("I am a skydiver.");
-
-        System.out.println(s.toString());
-
-        ///// Formatting //////////////////////////////////
-
-        // Outputting newlines and tabs
-        System.out.print("Here is some text.\tThat was a tab.\nThat was a newline.");
-        System.out.println(" More text.");
-
-        // Formatting integers
-        // %-10d means: output an integer in a space ten characters wide,
-        // padding with space and left-aligning (%10d would right-align)
-        System.out.printf("Total cost %-10d; quantity is %d\n", 5, 120);
-
-        // Demo-ing integer and string formatting control sequences
-        for (int i = 0; i < 20; i++) {
-            System.out.printf("%-2d: %s\n", i, "here is some text");
-        }
-
-        // Formatting floating point value
-
-        // Two decimal place:
-        System.out.printf("Total value: %.2f\n", 5.6874);
-
-        // One decimal place, left-aligned in 6-character field:
-        System.out.printf("Total value: %-6.1f\n", 343.23423);
-
-        // You can also use the String.format() method if you want to retrieve
-        // a formatted string.
-        String formatted = String.format("This is a floating-point value: %.3f", 5.12345);
-        System.out.println(formatted);
-
-        // Use double %% for outputting a % sign.
-        System.out.printf("Giving it %d%% is physically impossible.", 100);
+        System.out.println("Name is: " + name);
+        System.out.println("Age is: " + age);
     }
 
 }
