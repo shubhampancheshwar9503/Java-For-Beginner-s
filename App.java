@@ -1,45 +1,20 @@
-class Person {
-    String name;
-    int age;
-
-    void speak() {
-        System.out.println("My name is: " + name);
-    }
-
-    int calculateYearsToRetirement() {
-        int yearsLeft = 65 - age;
-
-        return yearsLeft;
-    }
-
-    int getAge() {
-        return age;
-    }
-
-    String getName() {
-        return name;
-    }
-}
-
 public class App {
 
     public static void main(String[] args) {
-        Person person1 = new Person();
 
-        person1.name = "Joe";
-        person1.age = 25;
+        // E.g. 4! = 4*3*2*1 (factorial 4)
 
-        // person1.speak();
+        System.out.println(factorial(5));
+    }
 
-        int years = person1.calculateYearsToRetirement();
+    private static int factorial(int value) {
+        // System.out.println(value);
 
-        System.out.println("Years till retirements " + years);
+        if (value == 1) {
+            return 1;
+        }
 
-        int age = person1.getAge();
-        String name = person1.getName();
-
-        System.out.println("Name is: " + name);
-        System.out.println("Age is: " + age);
+        return factorial(value - 1) * value;
     }
 
 }
