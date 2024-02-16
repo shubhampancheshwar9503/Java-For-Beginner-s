@@ -1,34 +1,7 @@
-class Plant {
+import java.util.ArrayList;
+import java.util.HashMap;
 
-    // Usually only static final members are public
-    public static final int ID = 7;
-
-    // Instance variables should be declared private,
-    // or at least protected.
-    private String name;
-
-    // Only methods intended for use outside the class
-    // should be public. These methods should be documented
-    // carefully if you distribute your code.
-    public String getData() {
-        String data = "some stuff" + calculateGrowthForecast();
-
-        return data;
-    }
-
-    // Methods only used the the class itself should
-    // be private or protected.
-    private int calculateGrowthForecast() {
-        return 9;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+class Animal {
 
 }
 
@@ -36,6 +9,36 @@ public class App {
 
     public static void main(String[] args) {
 
+        /////////////////// Before Java 5 ////////////////////////
+        ArrayList list = new ArrayList();
+
+        list.add("apple");
+        list.add("banana");
+        list.add("orange");
+
+        String fruit = (String) list.get(1);
+
+        System.out.println(fruit);
+
+        /////////////// Modern style //////////////////////////////
+
+        ArrayList<String> strings = new ArrayList<String>();
+
+        strings.add("cat");
+        strings.add("dog");
+        strings.add("alligator");
+
+        String animal = strings.get(1);
+
+        System.out.println(animal);
+
+        ///////////// There can be more than one type argument ////////////////////
+
+        HashMap<Integer, String> map = new HashMap<Integer, String>();
+
+        //////////// Java 7 style /////////////////////////////////
+
+        ArrayList<Animal> someList = new ArrayList<>();
     }
 
 }
