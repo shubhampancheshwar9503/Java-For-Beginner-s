@@ -1,44 +1,31 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-
-class Animal {
-
-}
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        // String fileName = "C:/Users/John/Desktop/example.txt";
+        String fileName = "example.txt";
 
-        /////////////////// Before Java 5 ////////////////////////
-        ArrayList list = new ArrayList();
+        File textFile = new File(fileName);
 
-        list.add("apple");
-        list.add("banana");
-        list.add("orange");
+        Scanner in = new Scanner(textFile);
 
-        String fruit = (String) list.get(1);
+        int value = in.nextInt();
+        System.out.println("Read value: " + value);
 
-        System.out.println(fruit);
+        in.nextLine();
 
-        /////////////// Modern style //////////////////////////////
+        int count = 2;
+        while (in.hasNextLine()) {
+            String line = in.nextLine();
 
-        ArrayList<String> strings = new ArrayList<String>();
+            System.out.println(count + ": " + line);
+            count++;
+        }
 
-        strings.add("cat");
-        strings.add("dog");
-        strings.add("alligator");
-
-        String animal = strings.get(1);
-
-        System.out.println(animal);
-
-        ///////////// There can be more than one type argument ////////////////////
-
-        HashMap<Integer, String> map = new HashMap<Integer, String>();
-
-        //////////// Java 7 style /////////////////////////////////
-
-        ArrayList<Animal> someList = new ArrayList<>();
+        in.close();
     }
 
 }
