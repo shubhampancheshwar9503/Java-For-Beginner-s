@@ -1,34 +1,44 @@
-import world.Plant;
- 
-/*
- * private --- only within same class
- * public --- from anywhere
- * protected -- same class, subclass, and same package
- * no modifier -- same package only
- */
- 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+class Animal {
+
+}
+
 public class App {
- 
-    /**
-     * @param args
-     */
+
     public static void main(String[] args) {
-        Plant plant = new Plant();
-         
-        System.out.println(plant.name);
-         
-        System.out.println(plant.ID);
-         
-        // Won't work --- type is private
-        //System.out.println(plant.type);
-         
-        // size is protected; App is not in the same package as Plant.
-        // Won't work
-        // System.out.println(plant.size);
-         
-        // Won't work; App and Plant in different packages, height has package-level visibility.
-        //System.out.println(plant.height);
- 
+
+        /////////////////// Before Java 5 ////////////////////////
+        ArrayList list = new ArrayList();
+
+        list.add("apple");
+        list.add("banana");
+        list.add("orange");
+
+        String fruit = (String) list.get(1);
+
+        System.out.println(fruit);
+
+        /////////////// Modern style //////////////////////////////
+
+        ArrayList<String> strings = new ArrayList<String>();
+
+        strings.add("cat");
+        strings.add("dog");
+        strings.add("alligator");
+
+        String animal = strings.get(1);
+
+        System.out.println(animal);
+
+        ///////////// There can be more than one type argument ////////////////////
+
+        HashMap<Integer, String> map = new HashMap<Integer, String>();
+
+        //////////// Java 7 style /////////////////////////////////
+
+        ArrayList<Animal> someList = new ArrayList<>();
     }
- 
+
 }
