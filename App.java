@@ -1,25 +1,31 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        // String fileName = "C:/Users/John/Desktop/example.txt";
+        String fileName = "example.txt";
 
-        // Null pointer exception ....
-        String text = null;
+        File textFile = new File(fileName);
 
-        System.out.println(text.length());
+        Scanner in = new Scanner(textFile);
 
-        // Arithmetic exception ... (divide by zero)
-        int value = 7 / 0;
+        int value = in.nextInt();
+        System.out.println("Read value: " + value);
 
-        // You can actually handle RuntimeExceptions if you want to;
-        // for example, here we handle an ArrayIndexOutOfBoundsException
-        String[] texts = { "one", "two", "three" };
+        in.nextLine();
 
-        try {
-            System.out.println(texts[3]);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(e.toString());
+        int count = 2;
+        while (in.hasNextLine()) {
+            String line = in.nextLine();
+
+            System.out.println(count + ": " + line);
+            count++;
         }
 
+        in.close();
     }
 
 }
