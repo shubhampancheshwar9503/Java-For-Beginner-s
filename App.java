@@ -1,31 +1,39 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+class Machine {
+    public void start() {
+        System.out.println("Starting machine ...");
+    }
+}
+
+interface Plant {
+    public void grow();
+}
 
 public class App {
 
-    public static void main(String[] args) throws FileNotFoundException {
-        // String fileName = "C:/Users/John/Desktop/example.txt";
-        String fileName = "example.txt";
+    public static void main(String[] args) {
 
-        File textFile = new File(fileName);
+        // This is equivalent to creating a class that "extends"
+        // Machine and overrides the start method.
+        Machine machine1 = new Machine() {
+            @Override
+            public void start() {
+                System.out.println("Camera snapping ....");
+            }
+        };
 
-        Scanner in = new Scanner(textFile);
+        machine1.start();
 
-        int value = in.nextInt();
-        System.out.println("Read value: " + value);
+        // This is equivalent to creating a class that "implements"
+        // the Plant interface
+        Plant plant1 = new Plant() {
+            @Override
+            public void grow() {
+                System.out.println("Plant growing");
 
-        in.nextLine();
+            }
+        };
 
-        int count = 2;
-        while (in.hasNextLine()) {
-            String line = in.nextLine();
-
-            System.out.println(count + ": " + line);
-            count++;
-        }
-
-        in.close();
+        plant1.grow();
     }
 
 }
