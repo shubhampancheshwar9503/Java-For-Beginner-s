@@ -1,31 +1,51 @@
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class App {
 
     public static void main(String[] args) {
-        Map<Integer, String> hashMap = new HashMap<Integer, String>();
-        Map<Integer, String> linkedHashMap = new LinkedHashMap<Integer, String>();
-        Map<Integer, String> treeMap = new TreeMap<Integer, String>();
 
-        testMap(treeMap);
-    }
+        LinkedList<String> animals = new LinkedList<String>();
 
-    public static void testMap(Map<Integer, String> map) {
-        map.put(9, "fox");
-        map.put(4, "cat");
-        map.put(8, "dog");
-        map.put(1, "giraffe");
-        map.put(0, "swan");
-        map.put(15, "bear");
-        map.put(6, "snake");
+        animals.add("fox");
+        animals.add("cat");
+        animals.add("dog");
+        animals.add("rabbit");
 
-        for (Integer key : map.keySet()) {
-            String value = map.get(key);
+        // "Old" way of iterating through lists (except that generics
+        // didn't exist pre Java 5). This way is still an integral part
+        // of Java; it allows you to remove items from the list
+        // and also supports the "for each" syntax behind the scenes.
 
-            System.out.println(key + ": " + value);
+        Iterator<String> it = animals.iterator();
+
+        while (it.hasNext()) {
+            String value = it.next();
+            System.out.println(value);
+
+            if (value.equals("cat")) {
+                it.remove();
+            }
+        }
+
+        System.out.println();
+
+        /*
+         * If you want to add items to a list while iterating through
+         * it, get a ListIterator using the .listIterator() method.
+         * ListIterator also has a previous() method, allowing you to
+         * "rewind" the iterator so that you can add items before
+         * the current item.
+         */
+
+        // / Modern iteration, Java 5 and later; "for each" loop
+
+        for (String animal : animals) {
+            System.out.println(animal);
+
+            // The following won't work; you need an iterator.
+            // Throws ConcurrentModificationException
+            // animals.remove(2);
         }
 
     }
