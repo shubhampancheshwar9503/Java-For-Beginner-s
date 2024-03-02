@@ -1,21 +1,31 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class App {
 
     public static void main(String[] args) {
-        File file = new File("test.txt");
+        Map<Integer, String> hashMap = new HashMap<Integer, String>();
+        Map<Integer, String> linkedHashMap = new LinkedHashMap<Integer, String>();
+        Map<Integer, String> treeMap = new TreeMap<Integer, String>();
 
-        try (BufferedWriter br = new BufferedWriter(new FileWriter(file))) {
-            br.write("This is line one");
-            br.newLine();
-            br.write("This is line two");
-            br.newLine();
-            br.write("Last line.");
-        } catch (IOException e) {
-            System.out.println("Unable to read file " + file.toString());
+        testMap(treeMap);
+    }
+
+    public static void testMap(Map<Integer, String> map) {
+        map.put(9, "fox");
+        map.put(4, "cat");
+        map.put(8, "dog");
+        map.put(1, "giraffe");
+        map.put(0, "swan");
+        map.put(15, "bear");
+        map.put(6, "snake");
+
+        for (Integer key : map.keySet()) {
+            String value = map.get(key);
+
+            System.out.println(key + ": " + value);
         }
 
     }
