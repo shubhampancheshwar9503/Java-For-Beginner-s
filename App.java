@@ -1,21 +1,55 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class App {
 
-    public static void main(String[] args) {
-        File file = new File("test.txt");
+    public static String[] vehicles = { "ambulance", "helicopter", "lifeboat" };
 
-        try (BufferedWriter br = new BufferedWriter(new FileWriter(file))) {
-            br.write("This is line one");
-            br.newLine();
-            br.write("This is line two");
-            br.newLine();
-            br.write("Last line.");
-        } catch (IOException e) {
-            System.out.println("Unable to read file " + file.toString());
+    public static String[][] drivers = {
+            { "Fred", "Sue", "Pete" },
+            { "Sue", "Richard", "Bob", "Fred" },
+            { "Pete", "Mary", "Bob" }, };
+
+    public static void main(String[] args) {
+
+        Map<String, Set<String>> personnel = new HashMap<String, Set<String>>();
+
+        for (int i = 0; i < vehicles.length; i++) {
+            String vehicle = vehicles[i];
+            String[] driversList = drivers[i];
+
+            Set<String> driverSet = new LinkedHashSet<String>();
+
+            for (String driver : driversList) {
+                driverSet.add(driver);
+            }
+
+            personnel.put(vehicle, driverSet);
+        }
+
+        { // Brackets just to scope driversList variable so can use again later
+          // Example usage
+            Set<String> driversList = personnel.get("helicopter");
+
+            for (String driver : driversList) {
+                System.out.println(driver);
+            }
+        }
+
+        // Iterate through whole thing
+        for (String vehicle : personnel.keySet()) {
+            System.out.print(vehicle);
+            System.out.print(": ");
+            Set<String> driversList = personnel.get(vehicle);
+
+            for (String driver : driversList) {
+                System.out.print(driver);
+                System.out.print(" ");
+            }
+
+            System.out.println();
         }
 
     }
