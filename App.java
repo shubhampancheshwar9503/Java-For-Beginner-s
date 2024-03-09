@@ -1,66 +1,57 @@
-import java.util.ArrayList;
-
-class Machine {
-
-    @Override
-    public String toString() {
-        return "I am a machine";
-    }
-
-    public void start() {
-        System.out.println("Machine starting.");
-    }
-
-}
-
-class Camera extends Machine {
-    @Override
-    public String toString() {
-        return "I am a camera";
-    }
-
-    public void snap() {
-        System.out.println("snap!");
-    }
-}
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class App {
 
+    public static String[] vehicles = { "ambulance", "helicopter", "lifeboat" };
+
+    public static String[][] drivers = {
+            { "Fred", "Sue", "Pete" },
+            { "Sue", "Richard", "Bob", "Fred" },
+            { "Pete", "Mary", "Bob" }, };
+
     public static void main(String[] args) {
 
-        ArrayList<Machine> list1 = new ArrayList<Machine>();
+        Map<String, Set<String>> personnel = new HashMap<String, Set<String>>();
 
-        list1.add(new Machine());
-        list1.add(new Machine());
+        for (int i = 0; i < vehicles.length; i++) {
+            String vehicle = vehicles[i];
+            String[] driversList = drivers[i];
 
-        ArrayList<Camera> list2 = new ArrayList<Camera>();
+            Set<String> driverSet = new LinkedHashSet<String>();
 
-        list2.add(new Camera());
-        list2.add(new Camera());
+            for (String driver : driversList) {
+                driverSet.add(driver);
+            }
 
-        showList(list2);
-        showList2(list1);
-        showList3(list1);
-    }
-
-    public static void showList(ArrayList<? extends Machine> list) {
-        for (Machine value : list) {
-            System.out.println(value);
-            value.start();
+            personnel.put(vehicle, driverSet);
         }
 
-    }
+        { // Brackets just to scope driversList variable so can use again later
+          // Example usage
+            Set<String> driversList = personnel.get("helicopter");
 
-    public static void showList2(ArrayList<? super Camera> list) {
-        for (Object value : list) {
-            System.out.println(value);
+            for (String driver : driversList) {
+                System.out.println(driver);
+            }
         }
-    }
 
-    public static void showList3(ArrayList<?> list) {
-        for (Object value : list) {
-            System.out.println(value);
+        // Iterate through whole thing
+        for (String vehicle : personnel.keySet()) {
+            System.out.print(vehicle);
+            System.out.print(": ");
+            Set<String> driversList = personnel.get(vehicle);
+
+            for (String driver : driversList) {
+                System.out.print(driver);
+                System.out.print(" ");
+            }
+
+            System.out.println();
         }
+
     }
 
 }
