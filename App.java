@@ -1,55 +1,31 @@
 import java.util.HashMap;
-import java.util.LinkedHashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
+import java.util.TreeMap;
 
 public class App {
 
-    public static String[] vehicles = { "ambulance", "helicopter", "lifeboat" };
-
-    public static String[][] drivers = {
-            { "Fred", "Sue", "Pete" },
-            { "Sue", "Richard", "Bob", "Fred" },
-            { "Pete", "Mary", "Bob" }, };
-
     public static void main(String[] args) {
+        Map<Integer, String> hashMap = new HashMap<Integer, String>();
+        Map<Integer, String> linkedHashMap = new LinkedHashMap<Integer, String>();
+        Map<Integer, String> treeMap = new TreeMap<Integer, String>();
 
-        Map<String, Set<String>> personnel = new HashMap<String, Set<String>>();
+        testMap(treeMap);
+    }
 
-        for (int i = 0; i < vehicles.length; i++) {
-            String vehicle = vehicles[i];
-            String[] driversList = drivers[i];
+    public static void testMap(Map<Integer, String> map) {
+        map.put(9, "fox");
+        map.put(4, "cat");
+        map.put(8, "dog");
+        map.put(1, "giraffe");
+        map.put(0, "swan");
+        map.put(15, "bear");
+        map.put(6, "snake");
 
-            Set<String> driverSet = new LinkedHashSet<String>();
+        for (Integer key : map.keySet()) {
+            String value = map.get(key);
 
-            for (String driver : driversList) {
-                driverSet.add(driver);
-            }
-
-            personnel.put(vehicle, driverSet);
-        }
-
-        { // Brackets just to scope driversList variable so can use again later
-          // Example usage
-            Set<String> driversList = personnel.get("helicopter");
-
-            for (String driver : driversList) {
-                System.out.println(driver);
-            }
-        }
-
-        // Iterate through whole thing
-        for (String vehicle : personnel.keySet()) {
-            System.out.print(vehicle);
-            System.out.print(": ");
-            Set<String> driversList = personnel.get(vehicle);
-
-            for (String driver : driversList) {
-                System.out.print(driver);
-                System.out.print(" ");
-            }
-
-            System.out.println();
+            System.out.println(key + ": " + value);
         }
 
     }
