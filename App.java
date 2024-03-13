@@ -1,74 +1,53 @@
-class Person {
-    private int id;
-    private String name;
-
-    public Person(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Person [id=" + id + ", name=" + name + "]";
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + id;
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Person other = (Person) obj;
-        if (id != other.id)
-            return false;
-        if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        return true;
-    }
-
-}
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class App {
 
     public static void main(String[] args) {
 
-        System.out.println(new Object());
+        LinkedList<String> animals = new LinkedList<String>();
 
-        Person person1 = new Person(5, "Bob");
-        Person person2 = new Person(5, "Bob");
+        animals.add("fox");
+        animals.add("cat");
+        animals.add("dog");
+        animals.add("rabbit");
 
-        System.out.println(person1.equals(person2));
+        // "Old" way of iterating through lists (except that generics
+        // didn't exist pre Java 5). This way is still an integral part
+        // of Java; it allows you to remove items from the list
+        // and also supports the "for each" syntax behind the scenes.
 
-        Double value1 = 7.2;
-        Double value2 = 7.2;
+        Iterator<String> it = animals.iterator();
 
-        System.out.println(value1.equals(value2));
+        while (it.hasNext()) {
+            String value = it.next();
+            System.out.println(value);
 
-        Integer number1 = 6;
-        Integer number2 = 6;
+            if (value.equals("cat")) {
+                it.remove();
+            }
+        }
 
-        System.out.println(number1.equals(number2));
+        System.out.println();
 
-        String text1 = "Hello";
-        String text2 = "Hellodfadf".substring(0, 5);
+        /*
+         * If you want to add items to a list while iterating through
+         * it, get a ListIterator using the .listIterator() method.
+         * ListIterator also has a previous() method, allowing you to
+         * "rewind" the iterator so that you can add items before
+         * the current item.
+         */
 
-        System.out.println(text2);
+        // / Modern iteration, Java 5 and later; "for each" loop
 
-        System.out.println(text1.equals(text2));
+        for (String animal : animals) {
+            System.out.println(animal);
+
+            // The following won't work; you need an iterator.
+            // Throws ConcurrentModificationException
+            // animals.remove(2);
+        }
+
     }
 
 }
