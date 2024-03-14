@@ -1,51 +1,55 @@
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class App {
 
+    public static String[] vehicles = { "ambulance", "helicopter", "lifeboat" };
+
+    public static String[][] drivers = {
+            { "Fred", "Sue", "Pete" },
+            { "Sue", "Richard", "Bob", "Fred" },
+            { "Pete", "Mary", "Bob" }, };
+
     public static void main(String[] args) {
 
-        LinkedList<String> animals = new LinkedList<String>();
+        Map<String, Set<String>> personnel = new HashMap<String, Set<String>>();
 
-        animals.add("fox");
-        animals.add("cat");
-        animals.add("dog");
-        animals.add("rabbit");
+        for (int i = 0; i < vehicles.length; i++) {
+            String vehicle = vehicles[i];
+            String[] driversList = drivers[i];
 
-        // "Old" way of iterating through lists (except that generics
-        // didn't exist pre Java 5). This way is still an integral part
-        // of Java; it allows you to remove items from the list
-        // and also supports the "for each" syntax behind the scenes.
+            Set<String> driverSet = new LinkedHashSet<String>();
 
-        Iterator<String> it = animals.iterator();
+            for (String driver : driversList) {
+                driverSet.add(driver);
+            }
 
-        while (it.hasNext()) {
-            String value = it.next();
-            System.out.println(value);
+            personnel.put(vehicle, driverSet);
+        }
 
-            if (value.equals("cat")) {
-                it.remove();
+        { // Brackets just to scope driversList variable so can use again later
+          // Example usage
+            Set<String> driversList = personnel.get("helicopter");
+
+            for (String driver : driversList) {
+                System.out.println(driver);
             }
         }
 
-        System.out.println();
+        // Iterate through whole thing
+        for (String vehicle : personnel.keySet()) {
+            System.out.print(vehicle);
+            System.out.print(": ");
+            Set<String> driversList = personnel.get(vehicle);
 
-        /*
-         * If you want to add items to a list while iterating through
-         * it, get a ListIterator using the .listIterator() method.
-         * ListIterator also has a previous() method, allowing you to
-         * "rewind" the iterator so that you can add items before
-         * the current item.
-         */
+            for (String driver : driversList) {
+                System.out.print(driver);
+                System.out.print(" ");
+            }
 
-        // / Modern iteration, Java 5 and later; "for each" loop
-
-        for (String animal : animals) {
-            System.out.println(animal);
-
-            // The following won't work; you need an iterator.
-            // Throws ConcurrentModificationException
-            // animals.remove(2);
+            System.out.println();
         }
 
     }
