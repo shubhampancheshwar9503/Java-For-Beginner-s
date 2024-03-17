@@ -1,74 +1,57 @@
-class Person {
-    private int id;
-    private String name;
-
-    public Person(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Person [id=" + id + ", name=" + name + "]";
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + id;
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Person other = (Person) obj;
-        if (id != other.id)
-            return false;
-        if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        return true;
-    }
-
-}
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class App {
 
+    public static String[] vehicles = { "ambulance", "helicopter", "lifeboat" };
+
+    public static String[][] drivers = {
+            { "Fred", "Sue", "Pete" },
+            { "Sue", "Richard", "Bob", "Fred" },
+            { "Pete", "Mary", "Bob" }, };
+
     public static void main(String[] args) {
 
-        System.out.println(new Object());
+        Map<String, Set<String>> personnel = new HashMap<String, Set<String>>();
 
-        Person person1 = new Person(5, "Bob");
-        Person person2 = new Person(5, "Bob");
+        for (int i = 0; i < vehicles.length; i++) {
+            String vehicle = vehicles[i];
+            String[] driversList = drivers[i];
 
-        System.out.println(person1.equals(person2));
+            Set<String> driverSet = new LinkedHashSet<String>();
 
-        Double value1 = 7.2;
-        Double value2 = 7.2;
+            for (String driver : driversList) {
+                driverSet.add(driver);
+            }
 
-        System.out.println(value1.equals(value2));
+            personnel.put(vehicle, driverSet);
+        }
 
-        Integer number1 = 6;
-        Integer number2 = 6;
+        { // Brackets just to scope driversList variable so can use again later
+          // Example usage
+            Set<String> driversList = personnel.get("helicopter");
 
-        System.out.println(number1.equals(number2));
+            for (String driver : driversList) {
+                System.out.println(driver);
+            }
+        }
 
-        String text1 = "Hello";
-        String text2 = "Hellodfadf".substring(0, 5);
+        // Iterate through whole thing
+        for (String vehicle : personnel.keySet()) {
+            System.out.print(vehicle);
+            System.out.print(": ");
+            Set<String> driversList = personnel.get(vehicle);
 
-        System.out.println(text2);
+            for (String driver : driversList) {
+                System.out.print(driver);
+                System.out.print(" ");
+            }
 
-        System.out.println(text1.equals(text2));
+            System.out.println();
+        }
+
     }
 
 }
