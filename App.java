@@ -1,57 +1,44 @@
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+
+class Animal {
+
+}
 
 public class App {
 
-    public static String[] vehicles = { "ambulance", "helicopter", "lifeboat" };
-
-    public static String[][] drivers = {
-            { "Fred", "Sue", "Pete" },
-            { "Sue", "Richard", "Bob", "Fred" },
-            { "Pete", "Mary", "Bob" }, };
-
     public static void main(String[] args) {
 
-        Map<String, Set<String>> personnel = new HashMap<String, Set<String>>();
+        /////////////////// Before Java 5 ////////////////////////
+        ArrayList list = new ArrayList();
 
-        for (int i = 0; i < vehicles.length; i++) {
-            String vehicle = vehicles[i];
-            String[] driversList = drivers[i];
+        list.add("apple");
+        list.add("banana");
+        list.add("orange");
 
-            Set<String> driverSet = new LinkedHashSet<String>();
+        String fruit = (String) list.get(1);
 
-            for (String driver : driversList) {
-                driverSet.add(driver);
-            }
+        System.out.println(fruit);
 
-            personnel.put(vehicle, driverSet);
-        }
+        /////////////// Modern style //////////////////////////////
 
-        { // Brackets just to scope driversList variable so can use again later
-          // Example usage
-            Set<String> driversList = personnel.get("helicopter");
+        ArrayList<String> strings = new ArrayList<String>();
 
-            for (String driver : driversList) {
-                System.out.println(driver);
-            }
-        }
+        strings.add("cat");
+        strings.add("dog");
+        strings.add("alligator");
 
-        // Iterate through whole thing
-        for (String vehicle : personnel.keySet()) {
-            System.out.print(vehicle);
-            System.out.print(": ");
-            Set<String> driversList = personnel.get(vehicle);
+        String animal = strings.get(1);
 
-            for (String driver : driversList) {
-                System.out.print(driver);
-                System.out.print(" ");
-            }
+        System.out.println(animal);
 
-            System.out.println();
-        }
+        ///////////// There can be more than one type argument ////////////////////
 
+        HashMap<Integer, String> map = new HashMap<Integer, String>();
+
+        //////////// Java 7 style /////////////////////////////////
+
+        ArrayList<Animal> someList = new ArrayList<>();
     }
 
 }
